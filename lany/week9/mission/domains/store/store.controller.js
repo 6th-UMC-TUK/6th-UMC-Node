@@ -20,7 +20,7 @@ export const addReviewController = async (req, res, next) => {
 
 // 가게에 미션 추가하기 controller
 export const addMissionController = async (req, res, next) => {
-  console.log("가게에 리뷰 추가를 요청했습니다!");
+  console.log("가게 미션 추가를 요청했습니다!");
   console.log("body", req.body);
 
   res.send(response(status.SUCCESS, await addMission(req.body)));
