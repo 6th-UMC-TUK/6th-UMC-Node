@@ -1,6 +1,6 @@
 import { status } from "../../config/reponse.status.js";
 import { response } from "../../config/reponse.js";
-import { addReview, registerStore } from "./store.service.js";
+import { addMission, addReview, registerStore } from "./store.service.js";
 
 // 가게 등록 controller
 export const registerStoreController = async (req, res, next) => {
@@ -16,4 +16,12 @@ export const addReviewController = async (req, res, next) => {
   console.log("body", req.body);
 
   res.send(response(status.SUCCESS, await addReview(req.body)));
+};
+
+// 가게에 미션 추가하기 controller
+export const addMissionController = async (req, res, next) => {
+  console.log("가게에 리뷰 추가를 요청했습니다!");
+  console.log("body", req.body);
+
+  res.send(response(status.SUCCESS, await addMission(req.body)));
 };

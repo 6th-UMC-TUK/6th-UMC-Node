@@ -1,8 +1,9 @@
-import { addReviewResponseDTO, registerStoreResponseDTO } from "./store.dto.js";
+import { addMissionResponseDTO, addReviewResponseDTO, registerStoreResponseDTO } from "./store.dto.js";
+import { addNewMission, addNewReview, registerNewStore } from "./store.dao.js";
 import { status } from "../../config/reponse.status.js";
-import { addNewReview, registerNewStore } from "./store.dao.js";
 import { BaseError } from "../../config/error.js";
 
+// 가게 등록 service
 export const registerStore = async (body) => {
   const result = await registerNewStore(body);
 
@@ -13,6 +14,7 @@ export const registerStore = async (body) => {
   return registerStoreResponseDTO(result);
 };
 
+// 가게 리뷰 service
 export const addReview = async (body) => {
   const result = await addNewReview(body);
 
@@ -21,4 +23,15 @@ export const addReview = async (body) => {
   }
 
   return addReviewResponseDTO(result);
+};
+
+// 가게 미션 추가 service
+export const addMission = async (body) => {
+  const result = await addNewMission(body);
+
+  if (result === -1) {
+    throw new BaseError(status.STORE_IS_NOT_EXIST);
+  }
+
+  return addMissionResponseDTO(result);
 };
