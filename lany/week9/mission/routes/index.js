@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import express from "express";
 
-import { addMissionController, addReviewController, registerStoreController } from "../domains/store/store.controller.js";
+import { addChallengeMissionController, addMissionController, addReviewController, registerStoreController } from "../domains/store/store.controller.js";
 
 export const storeRouter = express.Router();
 
@@ -13,3 +13,6 @@ storeRouter.post("/review", asyncHandler(addReviewController));
 
 // 가게에 미션 추가하기 API
 storeRouter.post("/mission", asyncHandler(addMissionController));
+
+// 가게의 미션을 유저가 도전 중인 미션 목록에 추가하는 API
+storeRouter.post("/challenge-mission", asyncHandler(addChallengeMissionController));

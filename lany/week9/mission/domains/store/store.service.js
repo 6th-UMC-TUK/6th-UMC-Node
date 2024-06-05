@@ -1,5 +1,5 @@
-import { addMissionResponseDTO, addReviewResponseDTO, registerStoreResponseDTO } from "./store.dto.js";
-import { addNewMission, addNewReview, registerNewStore } from "./store.dao.js";
+import { addChallengeMissionResponseDTO, addMissionResponseDTO, addReviewResponseDTO, registerStoreResponseDTO } from "./store.dto.js";
+import { addNewChallengeMission, addNewMission, addNewReview, registerNewStore } from "./store.dao.js";
 import { status } from "../../config/reponse.status.js";
 import { BaseError } from "../../config/error.js";
 
@@ -34,4 +34,17 @@ export const addMission = async (body) => {
   }
 
   return addMissionResponseDTO(result);
+};
+
+// 가게의 미션을 유저가 도전 중인 미션 목록에 추가 service
+export const addChallengeMission = async (body) => {
+  const result = await addNewChallengeMission(body);
+
+  if (result === -1) {
+    throw new BaseError(status.STORE_IS_NOT_EXIST);
+  } else if (result === -2) {
+    throw new BaseError(status.MISSION_ALREADY_EXIST);
+  }
+
+  return addChallengeMissionResponseDTO(result);
 };

@@ -1,6 +1,6 @@
+import { addChallengeMission, addMission, addReview, registerStore } from "./store.service.js";
 import { status } from "../../config/reponse.status.js";
 import { response } from "../../config/reponse.js";
-import { addMission, addReview, registerStore } from "./store.service.js";
 
 // 가게 등록 controller
 export const registerStoreController = async (req, res, next) => {
@@ -24,4 +24,12 @@ export const addMissionController = async (req, res, next) => {
   console.log("body", req.body);
 
   res.send(response(status.SUCCESS, await addMission(req.body)));
+};
+
+// 가게의 미션을 유저가 도전 중인 미션 목록에 추가하기 controller
+export const addChallengeMissionController = async (req, res, next) => {
+  console.log("유저가 도전중인 목록에 미션 추가를 요청했습니다!");
+  console.log("body", req.body);
+
+  res.send(response(status.SUCCESS, await addChallengeMission(req.body)));
 };
