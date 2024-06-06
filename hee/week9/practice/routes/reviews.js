@@ -26,3 +26,57 @@ router.post('/api/reviews', (req, res) => {
 });
 
 module.exports = router;
+/**
+ * @swagger
+ * /api/reviews:
+ *   post:
+ *     summary: 리뷰 추가
+ *     description: 새로운 리뷰를 추가합니다.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - store_name
+ *               - rating
+ *               - review_content
+ *             properties:
+ *               store_name:
+ *                 type: string
+ *                 description: 가게 이름
+ *               rating:
+ *                 type: number
+ *                 description: 평점
+ *               review_content:
+ *                 type: string
+ *                 description: 리뷰 내용
+ *               photos:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: 사진 URL 배열 (선택 사항)
+ *     responses:
+ *       201:
+ *         description: 리뷰가 성공적으로 추가되었습니다.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 store_name:
+ *                   type: string
+ *                 rating:
+ *                   type: number
+ *                 review_content:
+ *                   type: string
+ *                 photos:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *       400:
+ *         description: 필요한 필드가 누락되었습니다.
+ */

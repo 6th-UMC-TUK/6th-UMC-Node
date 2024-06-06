@@ -1,21 +1,21 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "Idontcare18^^",
     "database": "mission9",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "",
+    "password": "Idontcare18^^",
     "database": "mission9",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "",
+    "password": "Idontcare18^^",
     "database": "mission9",
     "host": "127.0.0.1",
     "dialect": "mysql"
