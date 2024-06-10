@@ -17,4 +17,5 @@ export const status = {
   ADDRESS_ALREADY_EXIST: { status: StatusCodes.CONFLICT, isSuccess: false, code: "STORE401", message: "이미 존재하는 주소입니다." },
   STORE_IS_NOT_EXIST: { status: StatusCodes.CONFLICT, isSuccess: false, code: "STORE402", message: "존재하지 않는 가게입니다." },
   MISSION_ALREADY_EXIST: { status: StatusCodes.CONFLICT, isSuccess: false, code: "STORE403", message: "이미 미션이 존재합니다." },
+  USER_IS_NOT_EXIST: { status: StatusCodes.CONFLICT, isSuccess: false, code: "STORE404", message: "존재하지 않는 유저입니다." },
 };
