@@ -21,5 +21,5 @@ export const getStoreReviewDTO = (items) => {
     };
   });
 
-  return { reviews: response, cursorId: items[items.length - 1].id };
+  return { reviews: response, cursor: { id: items[items.length - 1].id, rating: items[items.length - 1].rating } };
 };

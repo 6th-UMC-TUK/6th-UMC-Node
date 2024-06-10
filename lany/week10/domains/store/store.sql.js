@@ -10,11 +10,23 @@ export const insertNewMission = `INSERT INTO missions (store_id, title, descript
 // 유저가 가게의 미션을 도전중인 목록에 추가
 export const insertNewChallenge = `INSERT INTO mission_challenges (mission_id, user_id) values (?, 1);`;
 
-// 가게의 리뷰 조회
+// 최초 가게 리뷰 조회
 export const selectStoreReviewAtFirst = `SELECT u.nickname, r.content, r.created_at, r.rating, r.id
-FROM reviews as r JOIN users as u ON u.id = r.user_id
+FROM reviews as r
+JOIN users as u ON u.id = r.user_id
 WHERE r.store_id = ?
-ORDER BY r.rating DESC LIMIT ?;
+ORDER BY r.rating DESC
+LIMIT ?;
+`;
+
+// 페이징을 이용한 가게 리뷰 조회
+export const selectStoreReview = `SELECT u.nickname, r.content, r.created_at, r.rating, r.id
+FROM reviews as r
+JOIN users as u ON u.id = r.user_id
+WHERE r.store_id = ?
+  AND (r.rating < ? OR (r.rating = ? AND r.id < ?))
+ORDER BY r.rating DESC, r.id DESC
+LIMIT ?;
 `;
 
 // 새로 가게 추가 시 이미 존재하는 가게인지 조회

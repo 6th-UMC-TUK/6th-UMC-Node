@@ -381,7 +381,12 @@ paths:
           required: false
           schema:
             type: integer
-        - name: paging
+        - name: rating
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: size
           in: query
           required: false
           schema:
@@ -408,7 +413,7 @@ paths:
                     example: "success!"
                   result:
                     type: object
-                    example: { reviews: [{ nickname: "example", content: "짱짱~!", rating: 4, date: "2024-6-4" }], cursorId: 3 }
+                    example: { reviews: [{ nickname: "example", content: "짱짱~!", rating: 4, date: "2024-6-4" }], cursor: { id: 3, rating: 5 } }
         "400":
           description: 잘못된 요청
           content:

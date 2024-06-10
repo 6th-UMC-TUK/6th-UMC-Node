@@ -40,5 +40,5 @@ export const getStoreReviewController = async (req, res, next) => {
   console.log("가게의 리뷰를 조회했습니다!");
   console.log("params", req.params, req.query);
 
-  res.send(response(status.SUCCESS, await getStoreReview(req.params.store_id, req.query.review_id, req.query.size)));
+  res.send(response(status.SUCCESS, await getStoreReview(req.params.store_id, req.query)));
 };

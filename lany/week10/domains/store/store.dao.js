@@ -6,6 +6,7 @@ import {
   isAlreadyContinue,
   isExistAddress,
   isExistStore,
+  selectStoreReview,
   selectStoreReviewAtFirst,
 } from "./store.sql.js";
 import { pool } from "../../config/db.config.js";
@@ -99,7 +100,9 @@ export const addNewChallengeMission = async (body) => {
   }
 };
 
-export const getReview = async (store_id, cursor_id = null, size = 3) => {
+export const getReview = async (store_id, query) => {
+  const { size = 3, rating = 5 } = query;
+  const cursor_id = query["review-id"];
   try {
     const connection = await pool.getConnection();
 
@@ -110,8 +113,12 @@ export const getReview = async (store_id, cursor_id = null, size = 3) => {
       return -1;
     }
 
-    if (cursor_id === null) {
-      const [result] = await pool.query(selectStoreReviewAtFirst, [store_id, size]);
+    if (cursor_id === null || cursor_id === undefined) {
+      const [result] = await pool.query(selectStoreReviewAtFirst, [+store_id, +size]);
+      connection.release();
+      return result;
+    } else {
+      const [result] = await pool.query(selectStoreReview, [+store_id, +rating, +cursor_id, +size]);
       connection.release();
       return result;
     }
