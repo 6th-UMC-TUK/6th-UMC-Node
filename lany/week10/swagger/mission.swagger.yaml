@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: Week9 Study Mission
+  description: |-
+    10주차 스터디 미션입니다.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/
+tags:
+  - name: mission
+    description: mission API 입니다.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+paths:
+  /mission/{store-id}/list:
+    get:
+      tags:
+        - mission
+      summary: 미션 조회
+      description: 가게의 미션을 조회합니다.
+      operationId: checkMission
+      parameters:
+        - name: store-id
+          in: path
+            required: true
+            schema:
+              type: integer
+      responses:
+        "200":
+          description: 가게 미션 조회 성공!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 2000
+                  message:
+                    type: string
+                    example: "success!"
+                  result:
+                    type: object
+                    example: { "storeId": 1 }
+        "400":
+          description: 잘못된 요청
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: COMMON001
+                  message:
+                    type: string
+                    example: 잘못된 요청입니다
+        "500":
+          description: 서버 에러
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: COMMON000
+                  message:
+                    type: string
+                    example: 서버 에러, 관리자에게 문의 바랍니다.

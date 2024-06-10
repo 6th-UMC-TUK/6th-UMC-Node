@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Week9 Study Mission
   description: |-
-    9주차 스터디 미션입니다.
+    10주차 스터디 실습입니다.
   version: 1.0.0
 servers:
   - url: http://localhost:3000/
