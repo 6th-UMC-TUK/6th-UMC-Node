@@ -6,7 +6,8 @@ import cors from "cors";
 import { swaggerSpec } from "./swagger/swagger.config.js";
 import { status } from "./config/reponse.status.js";
 import { response } from "./config/reponse.js";
-import { storeRouter } from "./routes/index.js";
+import { storeRouter } from "./routes/store.js";
+import { missionRouter } from "./routes/mission.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(cors()); // cors 방식 허용
 
 app.use("/api-docs", SwaggerUi.serve, SwaggerUi.setup(swaggerSpec));
 app.use("/store", storeRouter);
+app.use("/mission", missionRouter);
 
 app.use((err, req, res, next) => {
   res.locals.message = err.message;

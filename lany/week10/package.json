@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node index.js",
-    "api-docs": "swagger-cli bundle ./swagger/user.swagger.yaml --outfile ./build/swagger.yaml --type yaml"
+    "start": "nodemon --exec babel-node index.js"
   },
   "keywords": [],
   "author": "",

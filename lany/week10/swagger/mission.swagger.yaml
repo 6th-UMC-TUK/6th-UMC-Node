@@ -15,7 +15,7 @@ components:
       type: http
       scheme: basic
 paths:
-  /mission/{store-id}/list:
+  /mission/{store_id}/list:
     get:
       tags:
         - mission
@@ -23,11 +23,21 @@ paths:
       description: 가게의 미션을 조회합니다.
       operationId: checkMission
       parameters:
-        - name: store-id
+        - name: store_id
           in: path
-            required: true
-            schema:
-              type: integer
+          required: true
+          schema:
+            type: integer
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
       responses:
         "200":
           description: 가게 미션 조회 성공!
@@ -50,7 +60,7 @@ paths:
                     example: "success!"
                   result:
                     type: object
-                    example: { "storeId": 1 }
+                    example: [{ title: "곱도리탕 먹고 인증하기", description: "매운집의 인기메뉴인 곱토리탕을 먹고 인증하세요!", id: 1 }]
         "400":
           description: 잘못된 요청
           content:
