@@ -29,6 +29,15 @@ ORDER BY r.rating DESC, r.id DESC
 LIMIT ?;
 `;
 
+// 페이징을 이용한 내가 작성한 리뷰 조회
+export const getMyReviewSQL = `SELECT r.store_id, r.content, r.rating, r.created_at
+FROM reviews r
+JOIN users u
+ON r.user_id = u.id
+WHERE u.id = 1
+LIMIT ?
+OFFSET ?;`;
+
 // 새로 가게 추가 시 이미 존재하는 가게인지 조회
 export const isExistAddress = `SELECT EXISTS(SELECT 1 FROM stores WHERE address = ?) as isExistAddress;`;
 

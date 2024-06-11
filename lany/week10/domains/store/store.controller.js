@@ -1,7 +1,7 @@
 import { addChallengeMission, addMission, addReview, registerStore } from "./store.service.js";
 import { status } from "../../config/reponse.status.js";
 import { response } from "../../config/reponse.js";
-import { getStoreReview } from "./store.povider.js";
+import { getMyReview, getStoreReview } from "./store.povider.js";
 
 // 가게 등록 controller
 export const registerStoreController = async (req, res, next) => {
@@ -41,4 +41,11 @@ export const getStoreReviewController = async (req, res, next) => {
   console.log("params", req.params, req.query);
 
   res.send(response(status.SUCCESS, await getStoreReview(req.params.store_id, req.query)));
+};
+
+// 내가 작성한 리뷰를 가져오는 API
+export const getMyReviewController = async (req, res, next) => {
+  console.log("내가 작성한 리뷰를 조회했습니다!");
+
+  res.send(response(status.SUCCESS, await getMyReview(req.query)));
 };

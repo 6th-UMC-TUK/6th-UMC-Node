@@ -1,4 +1,5 @@
 import {
+  getMyReviewSQL,
   insertNewChallenge,
   insertNewMission,
   insertNewReview,
@@ -10,6 +11,7 @@ import {
   selectStoreReviewAtFirst,
 } from "./store.sql.js";
 import { pool } from "../../config/db.config.js";
+import { isExistUser } from "../mission/mission.sql.js";
 
 // 가게 추가하기
 export const registerNewStore = async (body) => {
@@ -122,6 +124,28 @@ export const getReview = async (store_id, query) => {
       connection.release();
       return result;
     }
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const getMyReviewDAO = async (query) => {
+  const { page, size = 3 } = query;
+  const offset = (+page - 1) * +size;
+  try {
+    const connection = await pool.getConnection();
+
+    // 존재하는 유저인지 확인하는 부분
+    const [userExist] = await pool.query(isExistUser);
+
+    if (!userExist[0].isExistUser) {
+      return -1;
+    }
+
+    const [result] = await pool.query(getMyReviewSQL, [+size, offset]);
+
+    connection.release();
+    return result;
   } catch (err) {
     throw new Error(err);
   }

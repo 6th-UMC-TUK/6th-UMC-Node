@@ -5,6 +5,7 @@ import {
   addChallengeMissionController,
   addMissionController,
   addReviewController,
+  getMyReviewController,
   getStoreReviewController,
   registerStoreController,
 } from "../domains/store/store.controller.js";
@@ -22,6 +23,9 @@ storeRouter.post("/mission", asyncHandler(addMissionController));
 
 // 가게의 미션을 유저가 도전 중인 미션 목록에 추가하는 API
 storeRouter.post("/challenge-mission", asyncHandler(addChallengeMissionController));
+
+// 내가 작성한 리뷰를 가져오는 API
+storeRouter.get("/my-review", asyncHandler(getMyReviewController));
 
 // 가게의 리뷰를 가져오는 API
 storeRouter.get("/:store_id", asyncHandler(getStoreReviewController));
