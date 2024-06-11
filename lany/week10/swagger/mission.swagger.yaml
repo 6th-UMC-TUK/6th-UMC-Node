@@ -187,3 +187,79 @@ paths:
                   message:
                     type: string
                     example: 서버 에러, 관리자에게 문의 바랍니다.
+  /mission/update:
+    patch:
+      tags:
+        - mission
+      summary: 미션 완료하기
+      description: 진행중인 미션을 진행 완료로 바꿉니다.
+      operationId: updateStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                  description: 미션 id
+                  example: 1
+      responses:
+        "200":
+          description: 완료한 미션으로 변경 성공!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  isSuccess:
+                    type: boolean
+                    example: true
+                  code:
+                    type: integer
+                    example: 2000
+                  message:
+                    type: string
+                    example: "success!"
+        "400":
+          description: 잘못된 요청
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: COMMON001
+                  message:
+                    type: string
+                    example: 잘못된 요청입니다
+        "500":
+          description: 서버 에러
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  isSuccess:
+                    type: boolean
+                    example: false
+                  code:
+                    type: integer
+                    example: COMMON000
+                  message:
+                    type: string
+                    example: 서버 에러, 관리자에게 문의 바랍니다.
