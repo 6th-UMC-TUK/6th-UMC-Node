@@ -1,0 +1,29 @@
+paths:
+  /review:
+    get:
+      summary: Retrieve a list of reviews
+      tags:
+        - Reviews
+      responses:
+        '200':
+          description: A list of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nickname:
+                      type: string
+                      example: 유엠씨미션10주차입니다.
+                    rating:
+                      type: string
+                      example: "5"
+                    reviewDate:
+                      type: string
+                      format: date
+                      example: 2024-06-12
+                    reviewDetail:
+                      type: string
+                      example: 사장님너무맛있어요
