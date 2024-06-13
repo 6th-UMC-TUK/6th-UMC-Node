@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: Store API
+  version: 1.0.0
+  description: API for managing store reviews and missions
+servers:
+  - url: http://localhost:3000
+paths:
+  /review:
+    get:
+      summary: Retrieve a list of reviews
+      tags:
+        - Reviews
+      responses:
+        '200':
+          description: A list of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nickname:
+                      type: string
+                      example: 유엠씨미션10주차입니다.
+                    rating:
+                      type: string
+                      example: "5"
+                    reviewDate:
+                      type: string
+                      format: date
+                      example: 2024-06-12
+                    reviewDetail:
+                      type: string
+                      example: 사장님너무맛있어요
+  /mission:
+    get:
+      summary: Retrieve a list of missions
+      tags:
+        - Missions
+      responses:
+        '200':
+          description: A list of missions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    storename:
+                      type: string
+                      example: 투썸플레이스사당역점
+                    point:
+                      type: string
+                      example: 500p
+                    storeTypes:
+                      type: array
+                      items:
+                        type: string
+                      example: ["중식", "일식", "한식", "양식", "동남아식"]
